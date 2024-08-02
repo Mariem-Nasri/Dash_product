@@ -1,0 +1,39 @@
+<div class="create-product-container">
+  <h2>Create Product</h2>
+  <form (ngSubmit)="createProduct()">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input id="name" [(ngModel)]="product.name" name="name" required />
+    </div>
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <input
+        id="description"
+        [(ngModel)]="product.description"
+        name="description"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="price">Price:</label>
+      <input
+        id="price"
+        [(ngModel)]="product.price"
+        name="price"
+        type="number"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="stock">Stock:</label>
+      <input
+        id="stock"
+        [(ngModel)]="product.stock"
+        name="stock"
+        type="number"
+        required
+      />
+    </div>
+    <button type="submit">Create Product</button>
+  </form>
+</div>

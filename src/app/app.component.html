@@ -1,0 +1,159 @@
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+<div class="app-container">
+
+
+
+
+  <div class="sidebar">
+    <a routerLink="/create-product" class="sidebar-link active">
+      <i class="fas fa-tachometer-alt"></i> Dashboard
+    </a>
+    <a href="create-product-container" class="sidebar-link">
+      <i class="fas fa-plus-square"></i> Create Product
+    </a>
+    <a href="product-update" class="sidebar-link">
+      <i class="fas fa-edit"></i> Update Product
+    </a>
+    <a href="#" class="sidebar-link">
+      <i class="fas fa-cog"></i> Settings
+    </a>
+  </div>
+
+
+
+  
+  <div class="main-content">
+    <div class="names">
+      <h2>Liste des Produits</h2>
+      <table>
+        <thead>
+          <tr>
+
+            <th>Nom</th>
+            <th>Description</th>
+            <th>Prix</th>
+            <th>Stock</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of products">
+            <td>{{ product.name }}</td>
+            <td>{{ product.description }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.stock }}</td>
+            <td>
+              <button class="update" (click)="selectProduct(product)">
+                Update Product
+              </button>
+              <button class="delete" (click)="deleteProduct(product.id)">
+                Delete Product
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="create-product-container">
+      <h2>Create Product</h2>
+      <form (ngSubmit)="createProduct()">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input id="name" [(ngModel)]="newProduct.name" name="name" required />
+        </div>
+        <div class="form-group">
+          <label for="description">Description:</label>
+          <input
+            id="description"
+            [(ngModel)]="newProduct.description"
+            name="description"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="price">Price:</label>
+          <input
+            id="price"
+            [(ngModel)]="newProduct.price"
+            name="price"
+            type="number"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="stock">Stock:</label>
+          <input
+            id="stock"
+            [(ngModel)]="newProduct.stock"
+            name="stock"
+            type="number"
+            required
+          />
+        </div>
+        <button type="submit">Create Product</button>
+      </form>
+    </div>
+    <div class="product-update" *ngIf="selectedProduct">
+      <h2>Update Product</h2>
+      <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+
+        </div>
+
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            id="name"
+            [(ngModel)]="selectedProduct.name"
+            name="name"
+            class="form-control"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea
+            id="description"
+            [(ngModel)]="selectedProduct.description"
+            name="description"
+            class="form-control"
+            required
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="price">Price</label>
+          <input
+            type="number"
+            id="price"
+            [(ngModel)]="selectedProduct.price"
+            name="price"
+            class="form-control"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="stock">Stock</label>
+          <input
+            type="number"
+            id="stock"
+            [(ngModel)]="selectedProduct.stock"
+            name="stock"
+            class="form-control"
+            required
+          />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update</button>
+      </form>
+    </div>
+
+
+  </div>
+</div>
+
